@@ -99,11 +99,11 @@ RUN \
 # install packages
 RUN apk --update --no-progress add --no-cache \
 	ssmtp tzdata \
-	php-fpm php-json php-curl php-iconv php-ctype php-dom php-intl \
-	php-gd php-zlib php-openssl php-mcrypt php-phar \
-	php-xmlreader php-xml php-exif php-cli php-ldap php-xmlrpc php-xsl \
-	php-pdo_mysql php-pdo_pgsql php-zip php-bz2 php-apcu php-pcntl php-gmp php-posix && \
-	apk add --update -X http://nl.alpinelinux.org/alpine/edge/testing php-redis && \
+	php5-fpm php5-json php5-curl php5-iconv php5-ctype php5-dom php5-intl \
+	php5-gd php5-zlib php5-openssl php5-mcrypt php5-phar \
+	php5-xmlreader php5-xml php5-exif php5-cli php5-ldap php5-xmlrpc php5-xsl \
+	php5-pdo_mysql php5-pdo_pgsql php5-zip php5-bz2 php5-apcu php5-pcntl php5-gmp php5-posix && \
+	apk add --update -X http://nl.alpinelinux.org/alpine/edge/testing php5-redis && \
 	apk add --update -X http://nl.alpinelinux.org/alpine/edge/community php5-imagick && \
 	rm -rf /var/cache/apk/*
 
