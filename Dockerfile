@@ -98,7 +98,7 @@ RUN \
 
 # install packages
 RUN apk --update --no-progress add --no-cache \
-	ssmtp tzdata \
+	ssmtp tzdata curl \
 	php5-fpm php5-json php5-curl php5-iconv php5-ctype php5-dom php5-intl \
 	php5-gd php5-zlib php5-openssl php5-mcrypt php5-phar \
 	php5-xmlreader php5-xml php5-exif php5-cli php5-ldap php5-xmlrpc php5-xsl \
@@ -112,13 +112,13 @@ RUN echo "$TZ" > /etc/timezone && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 
 # tweak php-fpm config
-RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/php.ini && \
-	sed -i -e "s/;sendmail_path = /sendmail_path = sendmail -t -i/g" /etc/php/php.ini && \
-	sed -i -e "s/listen = 127\.0\.0\.1:9000/listen = \/var\/run\/php-fpm.sock/g" /etc/php/php-fpm.conf && \
-	sed -i -e "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php/php-fpm.conf && \
-	sed -i -e "s/;listen.group = nobody/listen.group = nginx/g" /etc/php/php-fpm.conf && \
-	sed -i -e "s/;listen.mode = 0660/listen.mode = 0750/g" /etc/php/php-fpm.conf && \
-	echo "date.timezone = $TZ" >>  /etc/php/php.ini
+RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/php.ini && \
+	sed -i -e "s/;sendmail_path = /sendmail_path = sendmail -t -i/g" /etc/php5/php.ini && \
+	sed -i -e "s/listen = 127\.0\.0\.1:9000/listen = \/var\/run\/php-fpm.sock/g" /etc/php5/php-fpm.conf && \
+	sed -i -e "s/;listen.owner = nobody/listen.owner = nginx/g" /etc/php5/php-fpm.conf && \
+	sed -i -e "s/;listen.group = nobody/listen.group = nginx/g" /etc/php5/php-fpm.conf && \
+	sed -i -e "s/;listen.mode = 0660/listen.mode = 0750/g" /etc/php5/php-fpm.conf && \
+	echo "date.timezone = $TZ" >>  /etc/php5/php.ini
 
 # install owncloud
 ENV OWNCLOUD_VERSION 9.1.0
@@ -142,7 +142,7 @@ CMD ["/bin/sh", "/start.sh"]
 
 ADD conf.d/ /etc/nginx/conf.d/
 
-ADD php.ini /etc/php/php.ini
+ADD php.ini /etc/php5/php.ini
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
