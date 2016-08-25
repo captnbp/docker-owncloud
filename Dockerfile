@@ -142,7 +142,7 @@ CMD ["/bin/sh", "/start.sh"]
 
 ADD conf.d/ /etc/nginx/conf.d/
 
-ADD php.ini /etc/php5/php.ini
+#ADD php.ini /etc/php5/php.ini
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
