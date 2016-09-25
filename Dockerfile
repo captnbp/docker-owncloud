@@ -121,7 +121,7 @@ RUN sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php5/php.ini && 
 	echo "date.timezone = $TZ" >>  /etc/php5/php.ini
 
 # install owncloud
-ENV OWNCLOUD_VERSION 9.1.0
+ENV OWNCLOUD_VERSION 9.1.1
 ENV OWNCLOUD_PACKAGE owncloud-$OWNCLOUD_VERSION.tar.bz2
 ENV OWNCLOUD_URL https://download.owncloud.org/community/$OWNCLOUD_PACKAGE
 RUN cd /usr/share/nginx/html \
